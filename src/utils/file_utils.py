@@ -43,7 +43,8 @@ def _create_file(file_path: Path) -> bool:
                 "elapsed_time_ms",
                 "flowrate",
                 "volume",
-                "total_volume"
+                "total_volume",
+                "pulse_count"
             ]
             writer = csv.writer(file)
             writer.writerow(csv_header)  # Write the header

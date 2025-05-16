@@ -21,7 +21,7 @@ total_volume = 0.0  # Total volume in liters
 def on_pulse():
     global pulse_count
     pulse_count += 1
-    # print(f"Pulse: {pulse_count}")
+    print(f"Pulse: {pulse_count}")
 
 # Attach event to trigger on pulse detection
 flow_sensor.when_activated = on_pulse
@@ -32,6 +32,7 @@ def monitor_flow_rate(pulses_per_liter:int, pump: str, duration: Any = 1) -> lis
     pulse_count = 0  # Reset before measuring
     start_time = time.time()
 
+    print(f"Monitoring Flow Rate!!!")
     time.sleep(duration)  # Collect pulses for 'duration' seconds
 
     end_time = time.time()
@@ -41,4 +42,4 @@ def monitor_flow_rate(pulses_per_liter:int, pump: str, duration: Any = 1) -> lis
     volume = pulse_count / pulses_per_liter
     total_volume += volume
 
-    return [pump, int(start_time), int(end_time), f"{elapsed_time*1000:.2f}", f"{flow_rate:.3f}", f"{volume:.3f}", f"{total_volume:.3f}"]
+    return [pump, int(start_time), int(end_time), f"{elapsed_time*1000:.2f}", f"{flow_rate:.3f}", f"{volume:.3f}", f"{total_volume:.3f}", f"{pulse_count}"]

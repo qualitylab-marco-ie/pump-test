@@ -4,8 +4,8 @@
         "PUMP_ON_TIME": 30,
         "PUMP_OFF_TIME": 15,
         "VOLUME": 14,
-        "CHARLES_AUSTEN_PUMP": 715,
-        "AQUATEC_PUMP": 820
+        "CHARLES_AUSTEN_PUMP": 691,
+        "AQUATEC_PUMP": 530
     },
     "TEST": {
         "DEBUG_MODE": true,

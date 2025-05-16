@@ -30,19 +30,21 @@ def main() -> None:
                 ca_pump_data = monitor_flow_rate(pulses_per_liter=ca_pump_ppl, pump=ca_pump, duration=config["PROD"]["PUMP_ON_TIME"])
                 
                 debug_utils.debug_message(ca_pump_data, logging.INFO)
+                print("")
                 file_utils.append_to_file(ca_pump_data)
                 
                 relay1.off()
-                time.sleep(5) # 2 Seconds for next pump cycle
+                time.sleep(10) # 10 Seconds for next pump cycle
                 relay2.on()
 
                 aq_pump_data = monitor_flow_rate(pulses_per_liter=aq_pump_ppl, pump=aq_pump, duration=config["PROD"]["PUMP_ON_TIME"])
                 debug_utils.debug_message(aq_pump_data, logging.INFO)
+                print("")
                 file_utils.append_to_file(aq_pump_data)
 
                 relay2.off()
                 
-                time.sleep(5) # 2 Seconds for next full cycle
+                time.sleep(10) #10 Seconds for next full cycle
     except Exception as e:
         debug_utils.debug_message(e, logging.ERROR)
     finally:
