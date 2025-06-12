@@ -27,24 +27,24 @@ def main() -> None:
             while True:
                 relay1.on()
                 
-                ca_pump_data = monitor_flow_rate(pulses_per_liter=ca_pump_ppl, pump=ca_pump, duration=config["PROD"]["PUMP_ON_TIME"])
+                ca_pump_data = monitor_flow_rate(pulses_per_liter=ca_pump_ppl, pump=ca_pump, duration=config["PROD"]["CHARLES_AUSTEN_PUMP_TIME_ON"])
                 
                 debug_utils.debug_message(ca_pump_data, logging.INFO)
                 print("")
                 file_utils.append_to_file(ca_pump_data)
                 
                 relay1.off()
-                time.sleep(10) # 10 Seconds for next pump cycle
+                time.sleep(config["PROD"]["PUMP_OFF_TIME"]) # Seconds for next pump cycle
                 relay2.on()
 
-                aq_pump_data = monitor_flow_rate(pulses_per_liter=aq_pump_ppl, pump=aq_pump, duration=config["PROD"]["PUMP_ON_TIME"])
+                aq_pump_data = monitor_flow_rate(pulses_per_liter=aq_pump_ppl, pump=aq_pump, duration=config["PROD"]["AQUATEC_PUMP_TIME_ON"])
                 debug_utils.debug_message(aq_pump_data, logging.INFO)
                 print("")
                 file_utils.append_to_file(aq_pump_data)
 
                 relay2.off()
                 
-                time.sleep(10) #10 Seconds for next full cycle
+                time.sleep(config["PROD"]["PUMP_OFF_TIME"]) # Seconds for next pump cycle
     except Exception as e:
         debug_utils.debug_message(e, logging.ERROR)
     finally:
